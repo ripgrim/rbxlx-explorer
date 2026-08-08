@@ -40,7 +40,11 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
   };
 
   const processFile = (file: File) => {
-    if (file.name.endsWith(".rbxlx") || file.name.endsWith(".xml")) {
+    if (
+      file.name.endsWith(".rbxlx") ||
+      file.name.endsWith(".xml") ||
+      file.name.endsWith(".json")
+    ) {
       setFileName(file.name);
 
       const reader = new FileReader();
@@ -51,7 +55,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
       };
       reader.readAsText(file);
     } else {
-      alert("Please upload a valid .rbxlx or .xml file");
+      alert("Please upload a .rbxlx, .xml, or map .json file");
     }
   };
 
@@ -97,7 +101,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
             Drop your RBXLX file here
           </p>
           <p className="text-sm text-gray-400">
-            or click to browse files (.rbxlx, .xml)
+            or click to browse files (.rbxlx, .xml, .json)
           </p>
         </div>
       )}
@@ -105,7 +109,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({
         type="file"
         ref={fileInputRef}
         onChange={handleFileInputChange}
-        accept=".rbxlx,.xml"
+        accept=".rbxlx,.xml,.json"
         className="hidden"
       />
     </div>
